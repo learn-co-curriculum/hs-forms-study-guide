@@ -46,22 +46,49 @@ end
 
 + When a user hits the submit button a ton of information is sent from the browser back to the server (front end to back end). It looks a little like this:
 
+![img](form data screen shot)
+
++ Which looks a little scary. Here is where we tip our hats to Sinatra. Our Sinatra application takes all of this crazy code, pulls out the important pieces
+
+![img](highlighted screen shot)
+
++ and distills the important info down to a hash that is called params that looks something like this:
 
 
-
-This is what happens:
-https://drive.google.com/a/flatironschool.com/file/d/0B4vrcPO5UdhRd29oSE00bDBJU3c/view?usp=sharing 
-This is where we tip our hats to Sinatra. It takes all of this and distills the important info down to a hash that is called a params hash. 
 Why “params” hash? Params is short for parameters. 
-Information can also be passed from from browser to server (or the frontend to the back end of an application) via URL parameters. Dying to know more about that? Check out the “Dig Deeper” <is this what we were planning to call them?> section on Ironboard.  
-Let’s take a look at this params hash by adding params.inspect into our post ‘/tweets’ route.
-Now we’ve got our params hash with all of the pertinent info to create a new instance of our tweet. Where does that happen? In the controller.
-How do we create a new instance of a tweet? How can pull out info from the params hash to do this? Give it a shot!
+Information can also be passed from from browser to server (or the frontend to the back end of an application) via URL parameters. Dying to know more about that? Check out the next Forms Demo section on Ironboard. 
 
-So great, we’ve got a form with a submit button, but when we hit submit, Sinatra tells us that it doesn’t know this ditty. 
-We need to add some instructions for Sinatra in our post ‘/tweets’ route so it knows what to do next. But where did all of the info from our form go? And how do we get a hold of it? 
++ Let's take a look at the params hash that Sinatra creates with the input from our form. You can always check this information by replacing any code you have in your POST route with `params.inspect`. This will display the params hash in your browser when you hit the submit button and it can be **very helpful for debugging**. Our params hash for this form looks something like this:
 
+```ruby
+{"username"=>"Vanessa", "status"=>"My first tweet!!!"}
+```
 
-What happens when you hit submit? Nada. We’re not providing anything for our browser to display in this post ‘/tweets’ method. Hmmmm wouldn’t it be nice if we had a route that displayed all of the tweets we created. Wait a minute we do!
-Sinatra has a handy little method called redirect that will send our browser to ‘/tweets’ - thus calling our get ‘/tweets’ method and displaying our tweets.
++ This params hash is just like any old ruby hash with key value pairs. If we want to pull out the value "Vanessa" from the hash, how do we do that? With something like this:
+
+```ruby
+params[:username]
+```
+
++ Notice that we are using the symbol `:username`. Although you see the keys as strings when you do `params.inspect` it is best practice to refer to the keys using a symbol and this should work just fine in your application.
+
++ Now that we’ve got our params hash with all of the pertinent info to create a new tweet, we just need to add some instructions for Sinatra in our `post ‘/tweets’` route so it knows what to do next.
+
++ Check out the tweet.rb model included in the demo. We are going to work with this model to create a new instance of the tweet in the controller. It's going to look a little something like this:
+
+```ruby
+post '/tweets' do
+  Tweet.new(params[:username], params[:status])
+  redirect '/tweets'
+end
+```
+
++ Notice that the two arguments that we are feeding into the initialize (.new) method are the username ("Vanessa") and the status ("My first tweet!!!") from the params hash.
+
++ Now wouldn’t it be nice if we had an easy way to display all of the tweets we are creating. Wait a minute, we do!
+
++ Sinatra has a handy little method called redirect that we can add to our `post '/tweets'` method that will automatically redirect to the `get ‘/tweets’` method. As long as the `get '/tweets'` method is set up properly with an erb template to display the tweets this should go swimmingly.
+
 WE’VE GOT TWEETS PEOPLE!!!!
+
++ Try running the demo 

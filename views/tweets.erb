@@ -1,12 +1,12 @@
 <h1>Tweets!</h1>
 
 <% @tweets.each do |tweet| %>
-  <p><strong><%= tweet.user %></strong>: <%= tweet.status %></p>
+  <p><strong><%= tweet.username %></strong>: <%= tweet.status %></p>
 <% end %>
 
 <h2>Create a Tweet</h2>
 <form action="/tweets" method="POST">
-  User: <input type="text" name="user">
+  User: <input type="text" name="username">
   Status: <input type="text" name="status">
   <input type="submit">
 </form>

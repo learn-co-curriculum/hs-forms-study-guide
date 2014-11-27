@@ -10,8 +10,9 @@ class App < Sinatra::Base
   end
 
   post '/tweets' do
-    Tweet.new(params[:username],params[:status])
-    redirect '/tweets'
+    params.inspect
+    # Tweet.new(params[:username],params[:status])
+    # redirect '/tweets'
   end
 
 end
