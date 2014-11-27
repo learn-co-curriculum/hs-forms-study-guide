@@ -37,7 +37,9 @@ end
   <input type="text" name="status">
 </form>
 ```
-In the example about I've created two input tags
++ In the example above I've added two input tags which will create two input fields for our user to type in their name and a status.
+
+
 The two most important attributes of an input tag are the type and name. 
 There are lots of choices for the type of input field - a drop down menu, a radio button, a check box or an open text field. We are going to start with an open text field where the user can type in info. So we’ll set type=”text”.
 The other important attribute of the input tag is the name. The name is like a label to describe the information we are taking in. What kind of information do we need to take in to create an instance of a tweet? In this input tag let’s set name=”user” because we’re going to enter the user’s name into the field.
