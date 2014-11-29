@@ -49,7 +49,7 @@ end
 
 + When a user hits the submit button a ton of information is sent from the browser back to the server. It looks a little like this:
 
-![img](https://www.dropbox.com/s/wc9q5dl0s6nr15e/form-data-highlighted.jpg?dl=0)
+![img](https://dl.dropboxusercontent.com/u/3026743/form-data.jpg)
 
 + Which looks a little scary. Here is where we tip our hats to Sinatra. Our Sinatra application takes all of this crazy code, pulls out the important pieces
 
