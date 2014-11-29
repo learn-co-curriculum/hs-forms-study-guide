@@ -57,7 +57,7 @@ end
 
 + and distills the important info down to a hash that is called params that looks something like this:
 
-![img](https://dl.dropboxusercontent.com/u/3026743/form-data-highlighted.jpg)
+![img](https://dl.dropboxusercontent.com/u/3026743/params.hash.jpg)
 
 Why “params” hash? Params is short for parameters. 
 Information can also be passed from from browser to server (or the frontend to the back end of an application) via URL parameters. Dying to know more about that? Check out the next Forms Demo section on Ironboard. 
