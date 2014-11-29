@@ -4,6 +4,8 @@ languages: ruby, html
 level: 3
 ---
 
+** There is a solution to the following walkthrough in the `demo` directory. Please feel free to create your own directory and follow along. **
+
 How does Twitter post your tweets? How does facebook upload your photos? How does tumblr air your most secret guilty pleasures? All of these web applications take in information from a user, mutate that information, and then display it back. We’re going to teach you guys how to do this with forms.
 
 + First let’s create an HTML form in your view. Forms are kind of like an envelope that holds information that we are sending from the front end of our application (where a user is typing information in the browser) to the back end where our models modify and store info.
@@ -13,7 +15,7 @@ attributes called `action` and `method`. Standard form tags look like this:
 
 ```html
 <form action="/tweets" method="POST">
-  <!-we'll be adding input fields here in a minute-->
+  <!--we'll be adding input fields here in a minute-->
 </form>
 ```
 
@@ -29,7 +31,7 @@ post '/tweets' do
 end
 ```
 
-+ Now our form is set up to send info from the user to the right place in our application, but our form “envelope” is empty. We need to create fields to take in info from the user and we use <input> tags to do this. They look something like this:
++ Now our form is set up to send info from the user to the right place in our application, but our form “envelope” is empty. We need to create fields to take in info from the user and we use `<input>` tags to do this. They look something like this:
 
 ```html
 <form action="/tweets" method="POST">
