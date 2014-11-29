@@ -53,10 +53,11 @@ end
 
 + Which looks a little scary. Here is where we tip our hats to Sinatra. Our Sinatra application takes all of this crazy code, pulls out the important pieces
 
-![img](highlighted screen shot)
+![img](https://dl.dropboxusercontent.com/u/3026743/form-data-highlighted.jpg)
 
 + and distills the important info down to a hash that is called params that looks something like this:
 
+![img](https://dl.dropboxusercontent.com/u/3026743/form-data-highlighted.jpg)
 
 Why “params” hash? Params is short for parameters. 
 Information can also be passed from from browser to server (or the frontend to the back end of an application) via URL parameters. Dying to know more about that? Check out the next Forms Demo section on Ironboard. 
