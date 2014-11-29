@@ -4,7 +4,7 @@ languages: ruby, html
 level: 3
 ---
 
-** There is a solution to the following walkthrough in the `demo` directory. Please feel free to create your own directory and follow along. **
+**There is a solution to the following walkthrough in the `demo` directory. Please feel free to create your own directory and follow along.**
 
 How does Twitter post your tweets? How does facebook upload your photos? How does tumblr air your most secret guilty pleasures? All of these web applications take in information from a user, mutate that information, and then display it back. We’re going to teach you guys how to do this with forms.
 
