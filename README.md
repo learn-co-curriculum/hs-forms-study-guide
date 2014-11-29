@@ -6,14 +6,13 @@ level: 3
 
 ##Using Forms
 
-**There is a solution to the following walkthrough in the `demo` directory. Please feel free to create your own directory and follow along.**
+**There is a solution to the following walk-through in the `demo` directory. Please feel free to create your own directory and follow along.**
 
 How does Twitter post your tweets? How does facebook upload your photos? How does tumblr air your most secret guilty pleasures? All of these web applications take in information from a user, mutate that information, and then display it back. We’re going to teach you guys how to do this with forms.
 
-+ First let’s create an HTML form in your view. Forms are kind of like an envelope that holds information that we are sending from the front end of our application (where a user is typing information in the browser) to the back end where our models modify and store info.
++ Forms are kind of like an envelope that holds information that we are sending from the front end of our application (where a user is typing information in the browser) to the back end where our models modify and store info. 
 
-+ This envelope is created with form tags that have two 
-attributes called `action` and `method`. Standard form tags look like this:
++ This envelope is created with form tags that have two attributes called `action` and `method`. Standard form tags look like this:
 
 ```html
 <form action="/tweets" method="POST">
@@ -21,11 +20,11 @@ attributes called `action` and `method`. Standard form tags look like this:
 </form>
 ```
 
-+ This action corresponds to a route in our controller. This form is set up to send input to a '/tweets' route via a POST request. (We'll be using this form to create some tweets.)
++ This action corresponds to a route in our controller and this form is set up to send input to a '/tweets' route via a POST request. 
 
 + We've already learned about GET requests. We use GET requests when the browser is getting information from the server (like the HTML/CSS for a web page). 
 
-+ This time around we want to send information the other way - from our browser back to the server - or from the front end of our application to the back (from the view to the model). To do this we'll use the Sinatra post method and set up a post route in our controller like so:
++ This time around we want to send information the other way - from our browser back to the server - or from the front end of our application (the view) to the back end (the model). To do this we'll use the Sinatra post method and set up a post route in our controller like so:
 
 ```ruby
 post '/tweets' do
@@ -44,13 +43,13 @@ end
 ```
 + Notice that these input tags have two important attributes: `type` and `name`. There are lots of choices for the `type` of input field (drop down menu, radio button, check box) but we are going to start with an open text field for this demo by setting `type="text"`. 
 
-+ Notice we've also included an input tag with `type="submit"`. This is VERY important because it creates a submit button and our users can't submit anything without it.
++ The other attribute in our input tags, `name`, is like a label to describe the information we are taking in. It is extremely important for keeping track of what is being submitted.
 
-+ The other attribute in our input tags, `name`, is like a label to describe the information we are taking in. It is extremely important for keeping track of the information that is submitted.
++ Notice we've also included an input tag with `type="submit"`. This is VERY important because it creates a submit button. Our users can't submit anything without it.
 
-+ When a user hits the submit button a ton of information is sent from the browser back to the server (front end to back end). It looks a little like this:
++ When a user hits the submit button a ton of information is sent from the browser back to the server. It looks a little like this:
 
-![img](form data screen shot)
+![img](https://www.dropbox.com/s/wc9q5dl0s6nr15e/form-data-highlighted.jpg?dl=0)
 
 + Which looks a little scary. Here is where we tip our hats to Sinatra. Our Sinatra application takes all of this crazy code, pulls out the important pieces
 
