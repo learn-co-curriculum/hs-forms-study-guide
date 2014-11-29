@@ -47,7 +47,7 @@ end
 
 + Notice we've also included an input tag with `type="submit"`. This is VERY important because it creates a submit button. Our users can't submit anything without it.
 
-+ When a user hits the submit button a ton of information is sent from the browser back to the server. It looks a little like this:
++ When a user hits the submit button a ton of information is sent from the browser back to the server. It looks something like this:
 
 ![img](https://dl.dropboxusercontent.com/u/3026743/form-data.jpg)
 
@@ -55,14 +55,19 @@ end
 
 ![img](https://dl.dropboxusercontent.com/u/3026743/form-data-highlighted.jpg)
 
-+ and distills the important info down to a hash that is called params that looks something like this:
++ and distills the important info down to a hash that is called params and looks something like this:
+
+```ruby
+{"username"=>"withloudhands", "email"=>"bob@flatironschool"}
+```
+
++ The keys in the hash are set in the forms `name=` attributes and the values in the hash are set with the values that a user types into the form. Like this:
 
 ![img](https://dl.dropboxusercontent.com/u/3026743/params.hash.jpg)
 
-Why “params” hash? Params is short for parameters. 
-Information can also be passed from from browser to server (or the frontend to the back end of an application) via URL parameters. Dying to know more about that? Check out the next Forms Demo section on Ironboard. 
++ Why is this hash called “params”? It's convention but its also because information can be passed from from browser to server (or the frontend of an application to the back end) via URL parameters. Dying to know more about that? Check out the Forms Demo on Ironboard. 
 
-+ Let's take a look at the params hash that Sinatra creates with the input from our form. You can always check this information by replacing any code you have in your POST route with `params.inspect`. This will display the params hash in your browser when you hit the submit button and it can be **very helpful for debugging**. Our params hash for this form looks something like this:
++ Now let's take a look at the params hash that Sinatra creates with the input from our tweets form. You can always check out your params hash by replacing any code you have in your POST route with `params.inspect`. This will display the params hash in your browser when you hit the submit button and it can be **very helpful for debugging**. Our params hash for this form looks something like this:
 
 ```ruby
 {"username"=>"Vanessa", "status"=>"My first tweet!!!"}
@@ -74,11 +79,13 @@ Information can also be passed from from browser to server (or the frontend to t
 params[:username]
 ```
 
-+ Notice that we are using the symbol `:username`. Although you see the keys as strings when you do `params.inspect` it is best practice to refer to the keys using a symbol and this should work just fine in your application.
++ Notice that we are using the symbol `:username`. Although the keys in our params hash appear as strings when we do `params.inspect`, it is best practice to refer to the keys using a symbol and this will work just fine in your application.
 
-+ Now that we’ve got our params hash with all of the pertinent info to create a new tweet, we just need to add some instructions for Sinatra in our `post ‘/tweets’` route so it knows what to do next.
++ Now we’ve got our params hash with all of the pertinent info we need to create a new tweet, but where is this info headed? (Hint: We set this destination with the `action` and `method` attributes of our form.) That's right. It's headed to our `post ‘/tweets’` route, so we'll need to add some instructions for Sinatra in that method.
 
-+ Check out the tweet.rb model included in the demo. We are going to work with this model to create a new instance of the tweet in the controller. It's going to look a little something like this:
++ The rest of this walk-through relies on having a Tweet model already in place. Check out `/models/tweet.rb` in the demo to see the model we'll be working with to build tweets. 
+
++ We're going to use this Tweets model to create a new instance of a tweet in the controller. It looks a little something like this:
 
 ```ruby
 post '/tweets' do
@@ -89,10 +96,11 @@ end
 
 + Notice that the two arguments that we are feeding into the initialize (.new) method are the username ("Vanessa") and the status ("My first tweet!!!") from the params hash.
 
-+ Now wouldn’t it be nice if we had an easy way to display all of the tweets we are creating. Wait a minute, we do!
++ The next line after we've created our new tweet is `redirect '/tweets'`. Sinatra has a handy little method called redirect that we can use to redirect to the `get ‘/tweets’` method. 
 
-+ Sinatra has a handy little method called redirect that we can add to our `post '/tweets'` method that will automatically redirect to the `get ‘/tweets’` method. As long as the `get '/tweets'` method is set up properly with an erb template to display the tweets this should go swimmingly.
++ As long as this `redirect` method is in the last line in our `post '/tweets'` route and the `get '/tweets'` method is set up properly with an erb template to display the tweets this should go swimmingly.
 
 WE’VE GOT TWEETS PEOPLE!!!!
 
-+ Try running the demo 
++ Try out the demo we've included in this walk-through by moving into the `demo` directory and starting up the server with the `rackup` command in your terminal. Going to `localhost:9292/tweets` in your browser to see the form and add tweets. **You must be in the demo directory and you must use `rackup` NOT `shotgun` for this demo to work properly.** 
+
