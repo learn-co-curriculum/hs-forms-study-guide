@@ -36,8 +36,8 @@ Now our form is ready to send info from the user to the right place in our appli
 
 ```html
 <form action="/tweets" method="POST">
-  Username: <input type="text" name="username">
-  Status: <input type="text" name="status">
+  <input type="text" name="username">
+  <input type="text" name="status">
   <input type="submit">
 </form>
 ```
@@ -67,7 +67,7 @@ The keys in the hash come from the `name` attribute and the values in the hash a
 
 Why is this hash called “params”? It's partly just convention but it's also because information can be passed from browser to server (or the front end of an application to the back end) via URL *parameters*. Dying to know more about that? Check out the Forms Demo on Ironboard. 
 
-Now let's take a look at the `params` hash that Sinatra creates with the input from our tweets form. You can always check out your params hash by replacing any code you have in your POST route with `params.inspect`. This will display the params hash in your browser when you hit the submit button and it can be **_very helpful for debugging_**. Our params hash for this form looks something like this:
+Now let's take a look at the `params` hash that Sinatra creates with the input from our tweets form. You can always check out your `params` hash by replacing any code you have in your POST route with `params.inspect`. This will display the params hash in your browser when you hit the submit button and it can be **_very helpful for debugging_**. Our params hash for this form looks something like this:
 
 ```ruby
 {"username"=>"Vanessa", "status"=>"My first tweet!!!"}
@@ -85,7 +85,7 @@ Now we’ve got our params hash with all of the pertinent info we need to create
 
 The rest of this walk-through relies on having a Tweet model already in place. Check out `/models/tweet.rb` in the demo to see the model we'll be working with to build tweets. 
 
-We're going to use this Tweet class to create a new instance of a tweet in the controller. Notice that we have included `require_relative 'models/tweet.rb'` at the top of `application_controller.rb` - a very important step in making sure the code in `application_controller.rb` has access to the code in `tweet.rb`. 
+We're going to use this Tweet model to create a new instance of a tweet in the controller. Notice that we have included `require_relative 'models/tweet.rb'` at the top of `application_controller.rb` - a very important step in making sure the code in `application_controller.rb` has access to the code in `tweet.rb`. 
 
 Creating a new instance of a Tweet in the controller looks like this:
 
@@ -105,10 +105,10 @@ As long as this `redirect` method is in the last line of our `post '/tweets'` ro
 Now that everything is set up, every time a user fills out the form to create a new tweet and hits the submit button the following steps will take place:
 
 1. a params hash with info from the form will be sent to the `post '/tweets'` route
-2. inside `post '/tweets'` the `Tweet.new` method is called and a new instance of the Tweet class is created with info from the params hash (the Tweet model also adds this new instance to an `ALL_TWEETS` array)
+2. inside `post '/tweets'` the `Tweet.new` method is called and a new instance of the Tweet class is created with info from the `params` hash (the Tweet model also adds the new instance to an `ALL_TWEETS` array)
 4. then the `redirect('/tweets')` method is called which triggers the `get '/tweets'` route
 5. inside `get '/tweets'` the `Tweet.all` method is called and an array of tweets is stored in an `@tweets` instance variable
-6. then the `erb(:tweets)` method is called which send the `@tweets` array to the `tweets.erb` template where the embedded ruby iterates through the `@tweets` array and displays each tweet
+6. then the `erb(:tweets)` method is called which sends the `@tweets` array to the `tweets.erb` template where the embedded ruby iterates through the `@tweets` array and displays each tweet
 7. then the `tweets.erb` template is rendered and displayed in the browser
 
 PHEW! That was a lot of steps, but now WE’VE GOT TWEETS!!!!
