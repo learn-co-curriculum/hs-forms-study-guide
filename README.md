@@ -10,9 +10,9 @@ level: 3
 
 How does Twitter post your tweets? How does facebook upload your photos? How does tumblr air your most secret guilty pleasures? All of these web applications take in information from a user, mutate that information, and then display it back. We’re going to teach you guys how to do this with forms.
 
-+ Forms are kind of like an envelope that holds information that we are sending from the front end of our application (where a user is typing information in the browser) to the back end where our models modify and store info. 
+Forms are kind of like an envelope that holds information that we are sending from the front end of our application (where a user is typing information in the browser) to the back end where our models modify and store info. 
 
-+ This envelope is created with form tags that have two attributes called `action` and `method`. Standard form tags look like this:
+This envelope is created with form tags that have two attributes called `action` and `method`. Standard form tags look like this:
 
 ```html
 <form action="/tweets" method="POST">
