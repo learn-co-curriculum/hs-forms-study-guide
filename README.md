@@ -12,7 +12,7 @@ How does Twitter post your tweets? How does facebook upload your photos? How doe
 
 Forms are kind of like an envelope that holds information that we are sending from the front end of our application (where a user is typing information in the browser) to the back end where our models modify and store info. 
 
-This envelope is created with form tags that have two attributes called `action` and `method`. Standard form tags look like this:
+This envelope is created with form tags that have two attributes called `action` and `method`. A standard form tag looks like this:
 
 ```html
 <form action="/tweets" method="POST">
@@ -20,7 +20,7 @@ This envelope is created with form tags that have two attributes called `action`
 </form>
 ```
 
-+ This action corresponds to a route in our controller and this form is set up to send input to a '/tweets' route via a POST request. 
++ The `action` corresponds to a route in the application controller. The `method` indicates how this info should be sent. This form is set up to send input to a '/tweets' route via a POST request. Let's break this down a little bit more.
 
 + We've already learned about GET requests. We use GET requests when the browser is getting information from the server (like the HTML/CSS for a web page). 
 
