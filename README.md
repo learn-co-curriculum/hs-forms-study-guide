@@ -22,17 +22,17 @@ This envelope is created with form tags that have two attributes called `action`
 
 The `action` corresponds to a route in the application controller. The `method` indicates how this info should be sent. The form tag above is set to send input to a '/tweets' route via a POST request. Let's break this down a little bit more.
 
-We've already learned about GET requests. We use GET requests when the browser is getting information from the server (like the HTML/CSS for a web page). 
+We've already learned about GET requests. We use GET requests when the browser is *getting* information from the server (like the HTML/CSS for a web page). 
 
-+ This time around we want to send information the other way - from our browser back to the server - or from the front end of our application (the view) to the back end (the model). To do this we'll use the Sinatra post method and set up a post route in our controller like so:
+This time around we want to send information the other way - from our browser back to the server - or from the front end of our application (the view) to the back end (the model). To do this we'll use the Sinatra post method and set up a post route in our controller like so:
 
 ```ruby
 post '/tweets' do
-  # we'll be adding code to process input from our form here
+  # we'll be adding some code here
 end
 ```
 
-Now our form is set up to send info from the user to the right place in our application, but our form “envelope” is empty. We need to create fields to take in info from the user and we use `<input>` tags to do this. They look something like this:
+Now our form is set up to send info from the user to the right place in our application, but our form “envelope” is empty. We need to create fields for our users to fill in and we use `<input>` tags to do this. They look something like this:
 
 ```html
 <form action="/tweets" method="POST">
@@ -43,7 +43,7 @@ Now our form is set up to send info from the user to the right place in our appl
 ```
 Notice that these input tags have two important attributes: `type` and `name`. There are lots of choices for the `type` of input field (drop down menu, radio button, check box) but we are going to start with an open text field for this demo by setting `type="text"`. 
 
-The other attribute in our input tags, `name`, is like a label to describe the information we are taking in. It is extremely important for keeping track of what is being submitted.
+The other attribute, `name`, is like a label for the information we are taking in. It is extremely important for keeping track of what is being submitted.
 
 Notice we've also included an input tag with `type="submit"`. This is VERY important because it creates a submit button. Our users can't submit anything without it.
 
@@ -51,17 +51,17 @@ When a user hits the submit button a ton of information is sent from the browser
 
 ![img](https://dl.dropboxusercontent.com/u/3026743/form-data.jpg)
 
-Which looks a little scary. Here is where we tip our hats to Sinatra. Our Sinatra application takes all of this crazy code, pulls out the important pieces
+Which looks a little scary. Here is where we tip our hats to Sinatra. Our Sinatra application takes all of this crazy code and pulls out the important pieces
 
 ![img](https://dl.dropboxusercontent.com/u/3026743/form-data-highlighted.jpg)
 
-and distills the important info down to a hash that is called params and looks something like this:
+and distills the important info down to a hash that is called a `params` hash. It looks something like this:
 
 ```ruby
 {"username"=>"withloudhands", "email"=>"bob@flatironschool"}
 ```
 
-The keys in the hash are set in the forms `name=` attributes and the values in the hash are set with the values that a user types into the form. Like this:
+The keys in the hash come from the `name` attribute and the values in the hash are set by the user when they fill in the form. Like this:
 
 ![img](https://dl.dropboxusercontent.com/u/3026743/params.hash.jpg)
 
