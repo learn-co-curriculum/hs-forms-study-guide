@@ -10,9 +10,9 @@ level: 3
 
 How does Twitter post your tweets? How does facebook upload your photos? How does tumblr air your most secret guilty pleasures? All of these web applications take in information from a user, mutate that information, and then display it back. We’re going to teach you guys how to do this with forms.
 
-Forms are kind of like an envelope that holds information that we are sending from the front end of our application (where a user is typing information in the browser) to the back end where our models modify and store info. 
+HTML forms are kind of like an envelope that holds information that we are sending from the front end of our application (where a user is typing information in the browser) to the back end where our models modify and/or store info. 
 
-This envelope is created with form tags that have two attributes called `action` and `method`. A standard form tag looks like this:
+This envelope is created with form tags that have two attributes called `action` and `method`. A standard HTML form tag looks like this:
 
 ```html
 <form action="/tweets" method="POST">
@@ -20,7 +20,7 @@ This envelope is created with form tags that have two attributes called `action`
 </form>
 ```
 
-The `action` corresponds to a route in the application controller. The `method` indicates how this info should be sent. The form tag above is set to send input to a '/tweets' route via a POST request. Let's break this down a little bit more.
+The `action` attribute corresponds to a route in the application controller. The `method` indicates how this info should be sent. The form tag above is set to send input to a '/tweets' route via a POST request. Let's break this down a little bit more.
 
 We've already learned about GET requests. We use GET requests when the browser is *getting* information from the server (like the HTML/CSS for a web page). 
 
@@ -32,12 +32,12 @@ post '/tweets' do
 end
 ```
 
-Now our form is set up to send info from the user to the right place in our application, but our form “envelope” is empty. We need to create fields for our users to fill in and we use `<input>` tags to do this. They look something like this:
+Now our form is ready to send info from the user to the right place in our application, but our form “envelope” is empty. We need to create fields for our users to fill in and we use `<input>` tags to do this. Here is our form with two input fields for username and status:
 
 ```html
 <form action="/tweets" method="POST">
-  <input type="text" name="username">
-  <input type="text" name="status">
+  Username: <input type="text" name="username">
+  Status: <input type="text" name="status">
   <input type="submit">
 </form>
 ```
