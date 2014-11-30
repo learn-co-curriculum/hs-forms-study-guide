@@ -6,13 +6,13 @@ class App < Sinatra::Base
 
   get '/tweets' do
     @tweets = Tweet.all
-    erb :tweets
+    erb(:tweets)
   end
 
   post '/tweets' do
     # params.inspect
     Tweet.new(params[:username],params[:status])
-    redirect '/tweets'
+    redirect('/tweets')
   end
 
 end
