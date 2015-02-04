@@ -54,13 +54,7 @@ Which looks a little scary. Here is where we tip our hats to Sinatra. Our Sinatr
 
 ![img](https://dl.dropboxusercontent.com/u/3026743/form-data-highlighted.jpg)
 
-and distills the important info down to a hash that is called a `params` hash. It looks something like this:
-
-```ruby
-{"username"=>"withloudhands", "email"=>"bob@flatironschool"}
-```
-
-The keys in the hash come from the `name` attribute and the values in the hash are set by the user when they fill in the form. Like this:
+and distills the important info down to a hash that is called a `params` hash. The keys in the hash come from the `name` attribute and the values in the hash are set by the user when they fill in the form. Like this:
 
 ![img](https://dl.dropboxusercontent.com/u/3026743/params.hash.jpg)
 
