@@ -1,18 +1,19 @@
 require 'rubygems'
 require 'sinatra'
-require_relative 'models/tweet.rb'
+require './models/foursquare.rb'
 
 class App < Sinatra::Base
 
-  get '/tweets' do
-    @tweets = Tweet.all
-    erb(:tweets)
+  get '/' do
+    erb :index
   end
 
-  post '/tweets' do
+  post '/results' do
     # params.inspect
-    Tweet.new(params[:username],params[:status])
-    redirect('/tweets')
+    hood = Neighborhood.new(params[:location])
+    hood.get_recommended_venues
+    @restaurants = hood.recommended_venues
+    erb :results
   end
 
 end

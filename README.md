@@ -8,36 +8,35 @@ level: 3
 
 **There is a solution to the following walk-through in the `demo` directory. Please feel free to create your own directory and follow along.**
 
-How does Twitter post your tweets? How does facebook upload your photos? How does tumblr air your most secret guilty pleasures? All of these web applications take in information from a user, mutate that information, and then display it back. We’re going to teach you guys how to do this with forms.
+How does Twitter post your tweets? How does facebook upload your photos? How does google perform your searches? All of these web applications take in information from a user, mutate that information, and then display something back. We’re going to teach you guys how to do this with forms.
 
 HTML forms are kind of like an envelope that holds information that we are sending from the front end of our application (where a user is typing information in the browser) to the back end where our models modify and/or store info. 
 
 This envelope is created with form tags that have two attributes called `action` and `method`. A standard HTML form tag looks like this:
 
 ```html
-<form action="/tweets" method="POST">
+<form action="/results" method="POST">
   <!--we'll be adding input fields here in a minute-->
 </form>
 ```
 
-The `action` attribute corresponds to a route in the application controller. The `method` indicates how this info should be sent. The form tag above is set to send input to a '/tweets' route via a POST request. Let's break this down a little bit more.
+The `action` attribute corresponds to a route in the application controller. The `method` indicates how this info should be sent. The form tag above is set to send input to a '/results' route via a POST request. Let's break this down a little bit more.
 
 We've already learned about GET requests. We use GET requests when the browser is *getting* information from the server (like the HTML/CSS for a web page). 
 
 This time around we want to send information the other way - from our browser back to the server - or from the front end of our application (the view) to the back end (the model). To do this we'll use the Sinatra post method and set up a post route in our controller like so:
 
 ```ruby
-post '/tweets' do
+post '/results' do
   # we'll be adding some code here
 end
 ```
 
-Now our form is ready to send info from the user to the right place in our application, but our form “envelope” is empty. We need to create fields for our users to fill in and we use `<input>` tags to do this. Here is our form with two input fields for username and status:
+Now our form is ready to send info from the user to the right place in our application, but our form “envelope” is empty. We need to create fields for our users to fill in and we use `<input>` tags to do this. Here is our form with a field for a location [that we can send to Foursquare for a search]:
 
 ```html
-<form action="/tweets" method="POST">
-  <input type="text" name="username">
-  <input type="text" name="status">
+<form action="/resuts" method="POST">
+  <input type="text" name="location">
   <input type="submit">
 </form>
 ```
@@ -70,50 +69,50 @@ Why is this hash called “params”? It's partly just convention but it's also 
 Now let's take a look at the `params` hash that Sinatra creates with the input from our tweets form. You can always check out your `params` hash by replacing any code you have in your POST route with `params.inspect`. This will display the params hash in your browser when you hit the submit button and it can be **_very helpful for debugging_**. Our params hash for this form looks something like this:
 
 ```ruby
-{"username"=>"Vanessa", "status"=>"My first tweet!!!"}
+{"location"=>"East Village, New York, NY"}
 ```
 
-This params hash is just like any old ruby hash with key value pairs. If we want to pull out the value "Vanessa" from the hash, how do we do that? With something like this:
+This params hash is just like any old ruby hash with key value pairs. If we want to pull out the value "East Village, New York, NY" from the hash, how do we do that? With something like this:
 
 ```ruby
-params[:username]
+params[:location]
 ```
 
-Notice that we are using the symbol `:username`. Although the keys in our params hash appear as strings when we do `params.inspect`, it is best practice to refer to the keys using a symbol and this will work just fine in your application.
+Notice that we are using the symbol `:location`. Although the keys in our params hash appear as strings when we do `params.inspect`, it is best practice to refer to the keys using a symbol and this will work just fine in your application.
 
-Now we’ve got our params hash with all of the pertinent info we need to create a new tweet, but where is this info headed? (Hint: We set this destination with the `action` and `method` attributes of our form.) That's right. It's headed to our `post ‘/tweets’` route, so we'll need to add some instructions for Sinatra there.
+Now we’ve got our params hash with all of the pertinent info we need for a new Foursquare search, but where is this info headed? (Hint: We set this destination with the `action` and `method` attributes of our form.) That's right. It's headed to our `post ‘/results’` route, so we'll need to add some instructions for Sinatra there.
 
-The rest of this walk-through relies on having a Tweet model already in place. Check out `/models/tweet.rb` in the demo to see the model we'll be working with to build tweets. 
+The rest of this walk-through relies on having a Foursquare model already in place. Check out `/models/foursquare.rb` in the demo to see the model we'll be working with to build tweets. 
 
-We're going to use this Tweet model to create a new instance of a tweet in the controller. Notice that we have included `require_relative 'models/tweet.rb'` at the top of `application_controller.rb` - a very important step in making sure the code in `application_controller.rb` has access to the code in `tweet.rb`. 
+We're going to use this Foursquare model to create a new instance of a Neighborhood in the controller. Notice that we have included `require './models/foursquare.rb'` at the top of `application_controller.rb` - a very important step in making sure the code in `application_controller.rb` has access to the code in `foursquare.rb`. 
 
 Creating a new instance of a Tweet in the controller looks like this:
 
 ```ruby
-post '/tweets' do
-  Tweet.new(params[:username], params[:status])
-  redirect('/tweets')
+post '/results' do
+  hood = Neighborhood.new(params[:location])
+  hood.get_recommended_venues
+  @restaurants = hood.recommended_venues
+  erb :results
 end
 ```
 
-Notice that the two arguments that we are feeding into the initialize (.new) method are the username ("Vanessa") and the status ("My first tweet!!!") from the `params` hash. 
+Notice that the argument that we feed into the initialize (.new) method is the location ("East Village, New York, NY") from the `params` hash. 
 
-The next line after we've created our new tweet is `redirect('/tweets')`. Sinatra has a handy little method called redirect that takes in the route you want to redirect to as an argument. We are redirecting to the `get ‘/tweets’` method (which displays our `tweets.erb` template in the browser). If you had another route like `get '/home'` you could redirect to the home page instead with `redirect('/home')`.
+The next line after we've created our new tweet is `erb :results` which displays `results.erb` template in the browser. As long as everything is set up properly with an erb template to display the restaurants, this should go swimmingly.
 
-As long as this `redirect` method is in the last line of our `post '/tweets'` route and the `get '/tweets'` method is set up properly with an erb template to display the tweets, this should go swimmingly.
+Every time a user fills out the form to search a new neighborhood and hits the submit button the following steps will take place:
 
-Now that everything is set up, every time a user fills out the form to create a new tweet and hits the submit button the following steps will take place:
+1. a params hash with info from the form will be sent to the `post '/results'` route
+2. inside `post '/results'` the `Neighborhood.new` method is called and a new instance of the Neighborhood class is created with info from the `params` hash
+3. the `get_recommended_venues` method is called to get a list of restaurants
+4. the `recommended_venues` array is stored in a `@restaurants` variable
+4. the `erb :results` method is called which displays `results.erb` in the browser
+5. in `results.erb` you can see embedded ruby that is iterating over the `@restaurants` array and displaying each restaurant name in its own `<p>` tags.
 
-1. a params hash with info from the form will be sent to the `post '/tweets'` route
-2. inside `post '/tweets'` the `Tweet.new` method is called and a new instance of the Tweet class is created with info from the `params` hash (the Tweet model also adds the new instance to an `ALL_TWEETS` array)
-4. then the `redirect('/tweets')` method is called which triggers the `get '/tweets'` route
-5. inside `get '/tweets'` the `Tweet.all` method is called and an array of tweets is stored in an `@tweets` instance variable
-6. then the `erb(:tweets)` method is called which sends the `@tweets` array to the `tweets.erb` template where the embedded ruby iterates through the `@tweets` array and displays each tweet
-7. then the `tweets.erb` template is rendered and displayed in the browser
+PHEW! That was a lot of steps, but now WE’VE GOT RESTAURANTS!!!!
 
-PHEW! That was a lot of steps, but now WE’VE GOT TWEETS!!!!
+Try out the demo we've included in this walk-through by moving into the `demo` directory and starting up the server with the `rackup` command in your terminal. Then go to `localhost:9292/` in your browser to see the form and start submitting your own tweets. 
 
-Try out the demo we've included in this walk-through by moving into the `demo` directory and starting up the server with the `rackup` command in your terminal. Then go to `localhost:9292/tweets` in your browser to see the form and start submitting your own tweets. 
-
-**NB: You must be in the demo directory and you must use `rackup` NOT `shotgun` for this demo to work properly.** 
+**NB: You must be in the demo directory for this demo to work properly.** 
 

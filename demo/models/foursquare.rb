@@ -1,9 +1,13 @@
+require 'httparty'
+
 class Neighborhood
   attr_accessor :location, :recommended_venues, :venue_ids, :venues_for_search, :venues_by_group, :api_response
   
   ##!!!NEEDS TO BE FILLED OUT WITH CLIENT ID AND SECRET PROVIDED BY FOURSQUARE
   # CLIENT_ID = ""
   # CLIENT_SECRET = ""
+  CLIENT_ID = "JUUFHYCI1ZWKTMHF5GEG1ZODCTREEO0TJRCC02UPOYCYJIGB"
+  CLIENT_SECRET = "GYUAW432FZ1UJ4PX4TM3IGSYNO2QAHMNAV4OR2DUKCHMJULJ"
 
   def initialize(location)
     @location = location
