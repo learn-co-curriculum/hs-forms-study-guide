@@ -76,7 +76,7 @@ Notice that we are using the symbol `:location`. Although the keys in our params
 
 Now we’ve got our params hash with all of the pertinent info we need for a new Foursquare search, but where is this info headed? (Hint: We set this destination with the `action` and `method` attributes of our form.) That's right. It's headed to our `post ‘/results’` route, so we'll need to add some instructions for Sinatra there.
 
-The rest of this walk-through relies on having a Foursquare model already in place. Check out `/models/foursquare.rb` in the demo to see the model we'll be working with to build tweets. 
+The rest of this walk-through relies on having a Foursquare model already in place. Check out `/models/foursquare.rb` in the demo to see the model we'll be working with to pull a list of restaurants. 
 
 We're going to use this Foursquare model to create a new instance of a Neighborhood in the controller. Notice that we have included `require './models/foursquare.rb'` at the top of `application_controller.rb` - a very important step in making sure the code in `application_controller.rb` has access to the code in `foursquare.rb`. 
 
