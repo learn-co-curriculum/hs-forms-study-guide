@@ -58,7 +58,7 @@ and distills the important info down to a hash that is called a `params` hash. T
 
 ![img](https://dl.dropboxusercontent.com/u/3026743/params.hash.jpg)
 
-Why is this hash called “params”? It's partly just convention but it's also because information can be passed from browser to server (or the front end of an application to the back end) via URL *parameters*. Dying to know more about that? Check out the Forms Demo on Ironboard. 
+Why is this hash called “params”? It's partly just convention but it's also because information can be passed from browser to server (or the front end of an application to the back end) via URL *parameters*. Dying to know more about that? Check out the Forms Demo on Learn. 
 
 Now let's take a look at the `params` hash that Sinatra creates with the input from our tweets form. You can always check out your `params` hash by replacing any code you have in your POST route with `params.inspect`. This will display the params hash in your browser when you hit the submit button and it can be **_very helpful for debugging_**. Our params hash for this form looks something like this:
 
