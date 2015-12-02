@@ -106,3 +106,5 @@ Try out the demo we've included in this walk-through by moving into the `demo` d
 
 **NB: You must be in the demo directory for this demo to work properly.** 
 
+
+<a href='https://learn.co/lessons/hs-forms-study-guide' data-visibility='hidden'>View this lesson on Learn.co</a>
