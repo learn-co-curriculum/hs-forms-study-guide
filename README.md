@@ -108,5 +108,3 @@ Try out the demo we've included in this walk-through by moving into the `demo` d
 
 
 <a href='https://learn.co/lessons/hs-forms-study-guide' data-visibility='hidden'>View this lesson on Learn.co</a>
-
-<a href='https://learn.co/lessons/hs-forms-study-guide' data-visibility='hidden'>View this lesson on Learn.co</a>
