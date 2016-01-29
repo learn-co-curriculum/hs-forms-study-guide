@@ -107,4 +107,4 @@ Try out the demo we've included in this walk-through by moving into the `demo` d
 **NB: You must be in the demo directory for this demo to work properly.** 
 
 
-<a href='https://learn.co/lessons/hs-forms-study-guide' data-visibility='hidden'>View this lesson on Learn.co</a>
+<p data-visibility='hidden'>View <a href='https://learn.co/lessons/hs-forms-study-guide' title='Using Forms'>Using Forms</a> on Learn.co and start learning to code for free.</p>
